@@ -10,15 +10,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TestPlugin extends JavaPlugin {
-	Location positionForTP;
 	List<TpPoint> tpPoints = new ArrayList<TpPoint>();
-
+	
     @Override
     public void onEnable(){
         // Actions à effectuer au démarrage du plugin, c'est-à-dire :
         //   - Au démarrage du serveur
         //   - Après un /reload
         getLogger().info("Plugin demarre !");
+        // On récupère la liste de tpPoints depuis la config
+        this.tpPoints = TpPoint.loadTpPointsList(this);
+        getLogger().info("Liste des tpPoints recuperee : " + this.tpPoints.size() + " points.");
     }
 
     @Override
@@ -49,7 +51,6 @@ public class TestPlugin extends JavaPlugin {
     	        Player p = (Player)sender;// On récupère le joueur.
     	    	if (args.length > 0) {
         	        Location newPosition = p.getLocation();
-        	        positionForTP = newPosition;
 
         	        String name = args[0];
     	        	TpPoint tpPoint = TpPoint.findTpPointInList(tpPoints, name, p);
@@ -61,6 +62,8 @@ public class TestPlugin extends JavaPlugin {
     	        	else {
             	        TpPoint newTpPoint = new TpPoint(args[0], newPosition, p);
             	        tpPoints.add(newTpPoint);
+            	        // Sauvegarde la liste des tpPoints dans le fichier de config
+            	        TpPoint.saveTpPointList(tpPoints, this);
             	        
             	        getLogger().info("La position [" + args[0] + "] a ete sauvegardee."); 
             	        p.sendMessage("La position [" + args[0] + "] a ete sauvegardee.");     	        		
@@ -122,7 +125,9 @@ public class TestPlugin extends JavaPlugin {
     	        	else {
     	        		// Supprime le point
             	        tpPoints.remove(tpPoint);
-            	        
+            	        // Sauvegarde la liste des tpPoints dans le fichier de config
+            	        TpPoint.saveTpPointList(tpPoints, this);
+      
             	        getLogger().info("Le point [" + args[0] + "] a ete supprime."); 
             	        p.sendMessage("Le point [" + args[0] + "] a ete supprime.");     	        		
     	        	}
@@ -146,7 +151,7 @@ public class TestPlugin extends JavaPlugin {
     	        Player p = (Player)sender;// On récupère le joueur.
     	        String result = "";
     	        for (TpPoint item : tpPoints) {
-    	        	if (item.getPlayer().getName().equals(p.getName())) {
+    	        	if (item.getPlayerName().equals(p.getName())) {
     	        		result += item.getName();
     	        		result += " ";
     	        	}
@@ -156,7 +161,7 @@ public class TestPlugin extends JavaPlugin {
     	        // C'est la console du serveur qui a effectuée la commande.
     	    	String result = "";
     	        for (TpPoint item : tpPoints) {
-	        		result += item.getPlayer().getName();
+	        		result += item.getPlayerName();
 	        		result += ":";
     	        	result += item.getName();
 	        		result += " ";
@@ -169,7 +174,6 @@ public class TestPlugin extends JavaPlugin {
 
     	return false;//Si une autre commande a été tapée on renvoie "false" pour dire qu'elle n'était pas valide.
     }
-
 
 	
 }
