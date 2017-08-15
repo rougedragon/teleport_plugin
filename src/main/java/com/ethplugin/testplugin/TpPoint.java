@@ -34,4 +34,12 @@ public class TpPoint {
 	public Location getLocation() {
 		return loc;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
 }

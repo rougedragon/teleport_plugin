@@ -139,6 +139,33 @@ public class TestPlugin extends JavaPlugin {
     		return true;//On renvoie "true" pour dire que la commande était valide
 
     	}
+    	else if (cmd.getName().equalsIgnoreCase("listtpposition")) { // Si c'est la commande "listtpposition" qui a été tapée:
+    		getLogger().info("Commande listtpposition recue.");
+    	    if(sender instanceof Player) {
+	    		// C'est un joueur qui a effectué la commande
+    	        Player p = (Player)sender;// On récupère le joueur.
+    	        String result = "";
+    	        for (TpPoint item : tpPoints) {
+    	        	if (item.getPlayer().getName().equals(p.getName())) {
+    	        		result += item.getName();
+    	        		result += " ";
+    	        	}
+    	        }
+    	        p.sendMessage("Liste des points enregistres : " + result);
+    	    } else {
+    	        // C'est la console du serveur qui a effectuée la commande.
+    	    	String result = "";
+    	        for (TpPoint item : tpPoints) {
+	        		result += item.getPlayer().getName();
+	        		result += ":";
+    	        	result += item.getName();
+	        		result += " ";
+    	        }
+    	        getLogger().info("Liste des points enregistres : " + result);
+    	    }
+    		return true;//On renvoie "true" pour dire que la commande était valide
+
+    	}
 
     	return false;//Si une autre commande a été tapée on renvoie "false" pour dire qu'elle n'était pas valide.
     }

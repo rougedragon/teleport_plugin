@@ -29,6 +29,12 @@ commands:
     permission: TestPlugin.removetpposition
     aliases:
     - rtp
+  listtpposition:
+    description: Gives list of positions previously saved
+    usage: /listtpposition
+    permission: TestPlugin.listtpposition
+    aliases:
+    - ltp
 permissions:
   TestPlugin.*:
     description: Permissions for test plugin
@@ -36,6 +42,7 @@ permissions:
       TestPlugin.settpposition: true
       TestPlugin.gototpposition: true
       TestPlugin.removetpposition: true
+      TestPlugin.listtpposition: true
     TestPlugin.settpposition:
      description: Allows you set a tp position
      default: true
@@ -45,3 +52,7 @@ permissions:
     TestPlugin.removetpposition:
      description: Allows you remove a tp position
      default: true
+    TestPlugin.listtpposition:
+     description: Allows you list all tp positions
+     default: true
+     
