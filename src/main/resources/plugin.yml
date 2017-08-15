@@ -13,17 +13,35 @@ commands:
     - cmdt
   settpposition:
     description: Sets a position for teleportation
-    usage: /settpposition
-    permission: permission.TestPlugin
+    usage: /settpposition [position_name]
+    permission: TestPlugin.settpposition
     aliases:
     - stp
   gototpposition:
     description: Go to position previously saved
-    usage: /gototpposition
-    permission: permission.TestPlugin
+    usage: /gototpposition [position_name]
+    permission: TestPlugin.gototpposition
     aliases:
     - gtp
+  removetpposition:
+    description: Remove position previously saved
+    usage: /removetpposition [position_name]
+    permission: TestPlugin.removetpposition
+    aliases:
+    - rtp
 permissions:
-  plugin.TestPlugin:
+  TestPlugin.*:
     description: Permissions for test plugin
-    default: true
+    children:
+      TestPlugin.settpposition: true
+      TestPlugin.gototpposition: true
+      TestPlugin.removetpposition: true
+    TestPlugin.settpposition:
+     description: Allows you set a tp position
+     default: true
+    TestPlugin.gototpposition:
+     description: Allows you go to a tp position
+     default: true
+    TestPlugin.removetpposition:
+     description: Allows you remove a tp position
+     default: true
