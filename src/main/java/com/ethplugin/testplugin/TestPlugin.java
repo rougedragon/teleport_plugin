@@ -30,8 +30,7 @@ public class TestPlugin extends JavaPlugin {
     
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (cmd.getName().equalsIgnoreCase("commandetest")) { // Si c'est la commande "exemple" qui a été tapée:
-    		// On fait quelque chose
+    	if (cmd.getName().equalsIgnoreCase("commandetest")) { // Si c'est la commande "commandetest" qui a été tapée:
     		getLogger().info("La commande a bien ete recue par le plugin !");
     	    if(sender instanceof Player) {
     	        // C'est un joueur qui a effectué la commande
@@ -43,8 +42,7 @@ public class TestPlugin extends JavaPlugin {
     	    }
     		return true;//On renvoie "true" pour dire que la commande était valide
     	}
-    	else if (cmd.getName().equalsIgnoreCase("settpposition")) { // Si c'est la commande "exemple" qui a été tapée:
-    		// On fait quelque chose
+    	else if (cmd.getName().equalsIgnoreCase("settpposition")) { // Si c'est la commande "setposition" qui a été tapée:
     		getLogger().info("Commande settpposition recue.");
     		if (args.length > 0) {
     			getLogger().info("Recu argument : " + args[0]);
@@ -56,11 +54,21 @@ public class TestPlugin extends JavaPlugin {
         	        Location newPosition = p.getLocation();
         	        positionForTP = newPosition;
 
-        	        TpPoint newTpPoint = new TpPoint(args[0], newPosition, p);
-        	        tpPoints.add(newTpPoint);
-        	        
-        	        getLogger().info("La position [" + args[0] + "] a ete sauvegardee."); 
-        	        p.sendMessage("La position [" + args[0] + "] a ete sauvegardee."); 
+        	        // TODO
+        	        String name = args[0];
+    	        	TpPoint tpPoint = TpPoint.findTpPointInList(tpPoints, name, p);
+    	        	if (tpPoint != null) {
+    	        		// Erreur, le point existe déjà
+        	    		p.sendMessage("Ce point existe deja.");
+            	        getLogger().info("Le joueur veut creer un point qui existe deja."); 
+    	        	}
+    	        	else {
+            	        TpPoint newTpPoint = new TpPoint(args[0], newPosition, p);
+            	        tpPoints.add(newTpPoint);
+            	        
+            	        getLogger().info("La position [" + args[0] + "] a ete sauvegardee."); 
+            	        p.sendMessage("La position [" + args[0] + "] a ete sauvegardee.");     	        		
+    	        	}
     	    	}
     	    	else {
     	    		p.sendMessage("Vous devez spécifier le nom du point. Exemple /settpposition maison");
@@ -73,8 +81,7 @@ public class TestPlugin extends JavaPlugin {
     	    }
     		return true;//On renvoie "true" pour dire que la commande était valide
     	}
-    	else if (cmd.getName().equalsIgnoreCase("gototpposition")) { // Si c'est la commande "exemple" qui a été tapée:
-    		// On fait quelque chose
+    	else if (cmd.getName().equalsIgnoreCase("gototpposition")) { // Si c'est la commande "gotoposition" qui a été tapée:
     		getLogger().info("Commande gototpposition recue.");
     	    if(sender instanceof Player) {
     	        // C'est un joueur qui a effectué la commande
