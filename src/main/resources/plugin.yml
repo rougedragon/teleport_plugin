@@ -1,0 +1,29 @@
+name: TestPlugin
+main: com.ethplugin.testplugin.TestPlugin
+version: 0.1
+description: Premier test de programmation de plugin
+author: RougeDragon
+commands:
+  commandetest:
+    description: Ma commande test
+    usage: /commandetest [parametre1] [parametre2]
+    permission: permission.TestPlugin
+    aliases:
+    - ct
+    - cmdt
+  settpposition:
+    description: Sets a position for teleportation
+    usage: /settpposition
+    permission: permission.TestPlugin
+    aliases:
+    - stp
+  gototpposition:
+    description: Go to position previously saved
+    usage: /gototpposition
+    permission: permission.TestPlugin
+    aliases:
+    - gtp
+permissions:
+  plugin.TestPlugin:
+    description: Permissions for test plugin
+    default: true
