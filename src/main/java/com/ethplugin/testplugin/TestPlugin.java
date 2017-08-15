@@ -96,7 +96,7 @@ public class TestPlugin extends JavaPlugin {
     	        	}
     	        }
     	        else {
-    	    		p.sendMessage("Vous devez spécifier le nom du point. Exemple /settpposition maison");
+    	    		p.sendMessage("Vous devez spécifier le nom du point. Exemple /gototpposition maison");
         	        getLogger().info("Le joueur n'a pas mis de nom de tpPoint."); 
     	    	}
     	    } else {
