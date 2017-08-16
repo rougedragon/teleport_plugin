@@ -17,10 +17,10 @@ public class TeleportPlugin extends JavaPlugin {
         // When plugin starts
         //   - At server startup
         //   - After /reload
-        getLogger().info("[TeleportPlugin] Starting!");
+        getLogger().info("Starting!");
         // Load tp points list from config file
         this.tpPoints = TpPoint.loadTpPointsList(this);
-        getLogger().info("[TeleportPlugin] Location list loaded from config: " + this.tpPoints.size() + " points.");
+        getLogger().info("Location list loaded from config: " + this.tpPoints.size() + " points.");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TeleportPlugin extends JavaPlugin {
     	// ********************************************************
     	
     	if (cmd.getName().equalsIgnoreCase("settpposition")) {
-    		getLogger().info("[TeleportPlugin] settpposition command entered");
+    		getLogger().info("settpposition command entered");
     	    if(sender instanceof Player) {
 	    		// Command issued by player
     	    	// We get the player object
@@ -53,7 +53,7 @@ public class TeleportPlugin extends JavaPlugin {
     	        	if (tpPoint != null) {
     	        		// Error, point name already exists for this player
         	    		p.sendMessage("You already have a saved point with this name.");
-            	        getLogger().info("[TeleportPlugin] The player has already got a point with this name."); 
+            	        getLogger().info("The player has already got a point with this name."); 
     	        	}
     	        	else {
     	        		// Create new point
@@ -63,18 +63,18 @@ public class TeleportPlugin extends JavaPlugin {
             	        // Save tpPoints list in the config file
             	        TpPoint.saveTpPointList(tpPoints, this);
             	        
-            	        getLogger().info("[TeleportPlugin] Position [" + args[0] + "] saved!"); 
+            	        getLogger().info("[Position [" + args[0] + "] saved!"); 
             	        p.sendMessage("Position [" + args[0] + "] saved!");     	        		
     	        	}
     	    	}
     	    	else {
     	    		p.sendMessage("You must specify point name. Example /settpposition home");
-        	        getLogger().info("[TeleportPlugin] The player has not specified the point name."); 
+        	        getLogger().info("The player has not specified the point name."); 
     	    	}
     	           	        
     	    } else {
     	        // Command issued from server
-        		getLogger().info("[TeleportPlugin] Command issued from server.");    	        
+        		getLogger().info("Command issued from server.");    	        
     	    }
     	    // Valid command, returns true
     		return true;
@@ -106,11 +106,11 @@ public class TeleportPlugin extends JavaPlugin {
     	        }
     	        else {
     	    		p.sendMessage("You must specify point name. Example /gototpposition home");
-        	        getLogger().info("[TeleportPlugin] The player has not specified point name."); 
+        	        getLogger().info("The player has not specified point name."); 
     	    	}
     	    } else {
     	        // Command issued from server
-        		getLogger().info("[TeleportPlugin] Command issued from server.");    	        
+        		getLogger().info("Command issued from server.");    	        
     	    }
     	    // Valid command, returns true
     		return true;
@@ -121,7 +121,7 @@ public class TeleportPlugin extends JavaPlugin {
     	// *********************************************************
     	
     	else if (cmd.getName().equalsIgnoreCase("removetpposition")) {
-    		getLogger().info("[TeleportPlugin] Command removetpposition entered.");
+    		getLogger().info("Command removetpposition entered.");
     	    if(sender instanceof Player) {
 	    		// Command issued by player, get player
     	        Player p = (Player)sender;
@@ -134,7 +134,7 @@ public class TeleportPlugin extends JavaPlugin {
     	        	if (tpPoint == null) {
     	        		// Error, point does not exist
     	        		p.sendMessage("This point does not exist.");
-            	        getLogger().info("[TeleportPlugin] Player tries to remove a point that does not exist."); 
+            	        getLogger().info("Player tries to remove a point that does not exist."); 
     	        	}
     	        	else {
     	        		// Remove the point from list
@@ -142,18 +142,18 @@ public class TeleportPlugin extends JavaPlugin {
             	        // Save tp points list in config file
             	        TpPoint.saveTpPointList(tpPoints, this);
       
-            	        getLogger().info("[TeleportPlugin] Point [" + args[0] + "] has been removed."); 
+            	        getLogger().info("Point [" + args[0] + "] has been removed."); 
             	        p.sendMessage("Point [" + args[0] + "] has been removed.");     	        		
     	        	}
     	    	}
     	    	else {
     	    		p.sendMessage("You must specify point name. Example /removetppoint home");
-        	        getLogger().info("[TeleportPlugin] The player has not specified the point name to remove."); 
+        	        getLogger().info("The player has not specified the point name to remove."); 
     	    	}
     	           	        
     	    } else {
     	        // Command issued from server
-        		getLogger().info("[TeleportPlugin] Command issued from server.");    	        
+        		getLogger().info("Command issued from server.");    	        
     	    }
     	    // Valid command, returns true
     		return true;
@@ -167,7 +167,7 @@ public class TeleportPlugin extends JavaPlugin {
     	// ********************************************************
     	
     	else if (cmd.getName().equalsIgnoreCase("listtpposition")) {
-    		getLogger().info("[TeleportPlugin] listtpposition command entered.");
+    		getLogger().info("listtpposition command entered.");
     	    if(sender instanceof Player) {
 	    		// Command issued by player
     	    	// Get the player
@@ -189,7 +189,7 @@ public class TeleportPlugin extends JavaPlugin {
     	        	result += item.getName();
 	        		result += " ";
     	        }
-    	        getLogger().info("[TeleportPlugin] Saved points: " + result);
+    	        getLogger().info("Saved points: " + result);
     	    }
     	    // Valid command, returns true
     		return true;
