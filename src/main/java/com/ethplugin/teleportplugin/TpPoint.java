@@ -1,4 +1,4 @@
-package com.ethplugin.testplugin;
+package com.ethplugin.teleportplugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class TpPoint {
 	/*
 	 * Save a list of TpPoints to config file
 	 */
-	public static void saveTpPointList(List<TpPoint> tpPointList, TestPlugin plugin) {
+	public static void saveTpPointList(List<TpPoint> tpPointList, TeleportPlugin plugin) {
 		String serialized = "";
 		for (TpPoint item : tpPointList) {
 			String itemSerialized = "";
@@ -66,7 +66,7 @@ public class TpPoint {
 	 * Load list of TpPoints from config
 	 * returns List<TpPoints>
 	 */
-	public static List<TpPoint> loadTpPointsList(TestPlugin plugin) {
+	public static List<TpPoint> loadTpPointsList(TeleportPlugin plugin) {
 		List<TpPoint> tpPoints = new ArrayList<TpPoint>();
 		String serialized = plugin.getConfig().getString("TpPointListSerialized");
 		if (serialized != null) {
@@ -75,7 +75,7 @@ public class TpPoint {
 			String [] lines = serialized.split("\n");
 			for (String line : lines) {
 				String [] element = line.split(";");
-				if (element.equals("")) {
+				if (line.equals("")) {
 					// Empty line, skip
 					continue;
 				}
@@ -102,7 +102,7 @@ public class TpPoint {
 					}
 					catch (Exception e) {
 						// Error in parsing element
-						plugin.getLogger().info("Error in reading TpPoints from config. Cannot restore element from line: " + line);	
+						plugin.getLogger().info("[TeleportPlugin] Error in reading TpPoints from config. Cannot restore element from line: " + line);	
 					}
 					
 				}

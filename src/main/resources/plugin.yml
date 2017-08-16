@@ -1,27 +1,21 @@
-name: TestPlugin
-main: com.ethplugin.testplugin.TestPlugin
-version: 0.1
-description: Premier test de programmation de plugin
+name: TeleportPlugin
+main: com.ethplugin.teleportplugin.TeleportPlugin
+version: 1.0.0
+description: With this plugin, you can save locations and then teleport your player to these locations at any time.
 author: RougeDragon
 commands:
-  commandetest:
-    description: Ma commande test
-    usage: /commandetest [parametre1] [parametre2]
-    aliases:
-    - ct
-    - cmdt
   settpposition:
-    description: Sets a position for teleportation
+    description: Save a position
     usage: /settpposition [position_name]
     aliases:
     - stp
   gototpposition:
-    description: Go to position previously saved
+    description: Go to a previously saved position
     usage: /gototpposition [position_name]
     aliases:
     - gtp
   removetpposition:
-    description: Remove position previously saved
+    description: Remove a position previously saved
     usage: /removetpposition [position_name]
     aliases:
     - rtp
