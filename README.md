@@ -13,9 +13,9 @@ Teleport to this saved location: /gtp lake
 
 ### Save the current location of your player:
 
-/setTpLocation [location name]
+/setTpPosition [location name]
 
-Example: /setTpLocation home
+Example: /setTpPosition home
 
 Alias: /stp home
 
@@ -23,9 +23,9 @@ Alias: /stp home
 
 ### Teleport your player to a previously saved location:
 
-/gotoTpLocation [location name]
+/gotoTpPosition [location name]
 
-Example: /gotoTpLocation home
+Example: /gotoTpPosition home
 
 Alias: /gtp home
 
@@ -33,9 +33,9 @@ Alias: /gtp home
 
 ### Remove a previously saved location:
 
-/removeTpLocation [location name]
+/removeTpPosition [location name]
 
-Example: /removeTpLocation home
+Example: /removeTpPosition home
 
 Alias: /rtp home
 
@@ -43,7 +43,7 @@ Alias: /rtp home
 
 ### List all saved locations:
 
-/listTpLocation
+/listTpPosition
 
 Alias: /ltp
 
